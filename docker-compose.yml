@@ -1,0 +1,20 @@
+services:
+  pg-database: # PostgreSQL server
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=sensors
+    volumes:
+      - "./docker-data/sensors_data:/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
+  pg-admin: # pgAdmin management tool
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    volumes:
+      - "./docker-data/pgadmin:/var/lib/pgadmin"
+    ports:
+      - "8080:80"
